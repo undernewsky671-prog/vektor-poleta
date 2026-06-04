@@ -69,7 +69,7 @@ export function HeroSection() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1], delay: 0.2 }}
               className="text-[clamp(64px,10vw,120px)] font-bold leading-[0.95] tracking-[-0.04em] text-text-primary"
-              style={{ paddingLeft: "0.03em", paddingBottom: "0.12em" }}
+              style={{ paddingLeft: "0.03em" }}
             >
               {HERO.headline1}
               <br />
