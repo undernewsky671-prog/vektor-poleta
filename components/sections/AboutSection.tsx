@@ -1,12 +1,17 @@
 "use client";
+import { useState } from "react";
+import Image from "next/image";
 import { ABOUT } from "@/constants/content";
-import { Reveal, ImagePlaceholder } from "@/components/ui";
+import { Reveal } from "@/components/ui";
 
 export function AboutSection() {
+  const [imgError, setImgError] = useState(false);
+
   return (
     <section id="about" className="section-padding bg-light-bg">
       <div className="max-w-content mx-auto px-5 md:px-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
+
           {/* Left — text */}
           <div>
             <Reveal>
@@ -29,9 +34,7 @@ export function AboutSection() {
             <div className="space-y-5">
               {ABOUT.paragraphs.map((p, i) => (
                 <Reveal key={i} delay={0.15 + i * 0.08}>
-                  <p className="text-base text-light-text-2 leading-relaxed">
-                    {p}
-                  </p>
+                  <p className="text-base text-light-text-2 leading-relaxed">{p}</p>
                 </Reveal>
               ))}
             </div>
@@ -43,18 +46,28 @@ export function AboutSection() {
             </Reveal>
           </div>
 
-          {/* Right — image + manifesto */}
+          {/* Right — image */}
           <div className="flex flex-col gap-8">
             <Reveal delay={0.2}>
-              {/*
-                IMAGE: Team or equipment close-up
-                Replace with: <Image src="/images/about.jpg" alt="Команда Вектора Полёта" fill className="object-cover" />
-              */}
-              <ImagePlaceholder
-                label="Фото: Команда / оборудование крупным планом"
-                aspectRatio="aspect-[4/3]"
-                className="w-full bg-white/60 border-light-border"
-              />
+              {/* Положите about.jpg в public/images/ */}
+              <div className="relative aspect-[4/3] w-full rounded-xl overflow-hidden bg-white/60 border border-light-border">
+                {!imgError ? (
+                  <Image
+                    src="/images/about.jpg"
+                    alt="Команда Вектора Полёта"
+                    fill
+                    className="object-cover"
+                    sizes="(max-width: 1024px) 100vw, 50vw"
+                    onError={() => setImgError(true)}
+                  />
+                ) : (
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <p className="mono-tag text-[10px] text-light-text-2">
+                      Фото: about.jpg
+                    </p>
+                  </div>
+                )}
+              </div>
             </Reveal>
 
             <Reveal delay={0.3}>
