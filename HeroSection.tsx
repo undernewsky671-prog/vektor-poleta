@@ -12,7 +12,7 @@ export function HeroSection() {
   return (
     <section
       id="hero"
-      className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden bg-bg-deep"
+      className="relative min-h-screen flex flex-col items-center justify-center bg-bg-deep"
     >
       {/* Background image */}
       <div className="absolute inset-0">
@@ -69,7 +69,7 @@ export function HeroSection() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1], delay: 0.2 }}
               className="text-[clamp(64px,10vw,120px)] font-bold leading-[0.95] tracking-[-0.04em] text-text-primary"
-              style={{ paddingLeft: "0.03em" }}
+              style={{ paddingLeft: "0.03em", paddingBottom: "0.18em" }}
             >
               {HERO.headline1}
               <br />
