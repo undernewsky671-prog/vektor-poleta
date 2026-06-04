@@ -1,4 +1,5 @@
 "use client";
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { HERO } from "@/constants/content";
 
@@ -13,7 +14,23 @@ export function HeroSection() {
       id="hero"
       className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden bg-bg-deep"
     >
-      {/* Background ambient glow */}
+      {/* Background image — положите hero-bg.jpg в public/images/ */}
+      <div className="absolute inset-0">
+        <Image
+          src="/images/hero-bg.jpg"
+          alt=""
+          fill
+          className="object-cover opacity-40"
+          priority
+          sizes="100vw"
+          onError={(e) => {
+            (e.target as HTMLImageElement).style.display = "none";
+          }}
+        />
+        <div className="absolute inset-0 bg-bg-deep/60" />
+      </div>
+
+      {/* Ambient glow */}
       <div
         className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[600px] rounded-full pointer-events-none"
         style={{
@@ -22,7 +39,7 @@ export function HeroSection() {
         }}
       />
 
-      {/* Subtle grid lines */}
+      {/* Grid lines */}
       <div
         className="absolute inset-0 pointer-events-none opacity-[0.025]"
         style={{
@@ -32,20 +49,9 @@ export function HeroSection() {
         }}
       />
 
-      {/* Image placeholder area */}
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute inset-0 bg-bg-deep/60" />
-        {/*
-          IMAGE: Hero background
-          Replace with: FPV drone in motion with light trails, long exposure, cinematic
-          Suggested: <Image src="/images/hero-bg.jpg" alt="" fill className="object-cover opacity-40" priority />
-        */}
-      </div>
-
       {/* Content */}
       <div className="relative z-10 max-w-content mx-auto px-5 md:px-10 w-full pt-20">
         <div className="max-w-3xl">
-          {/* Eyebrow */}
           <motion.p
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
@@ -55,7 +61,6 @@ export function HeroSection() {
             FPV · Образовательная платформа
           </motion.p>
 
-          {/* Headline */}
           <div className="overflow-hidden">
             <motion.h1
               initial={{ opacity: 0, y: 40 }}
@@ -65,11 +70,10 @@ export function HeroSection() {
             >
               {HERO.headline1}
               <br />
-              <span className="text-text-primary">{HERO.headline2}</span>
+              {HERO.headline2}
             </motion.h1>
           </div>
 
-          {/* Lead */}
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -79,7 +83,6 @@ export function HeroSection() {
             {HERO.lead}
           </motion.p>
 
-          {/* CTAs */}
           <motion.div
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
@@ -102,7 +105,6 @@ export function HeroSection() {
         </div>
       </div>
 
-      {/* Scroll indicator */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
