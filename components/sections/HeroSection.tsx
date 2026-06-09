@@ -12,9 +12,9 @@ export function HeroSection() {
   return (
     <section
       id="hero"
-      className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden bg-bg-deep"
+      className="relative min-h-screen flex flex-col items-center justify-center bg-bg-deep"
     >
-      {/* Background image — положите hero-bg.jpg в public/images/ */}
+      {/* Background image */}
       <div className="absolute inset-0">
         <Image
           src="/images/hero-bg.jpg"
@@ -49,9 +49,10 @@ export function HeroSection() {
         }}
       />
 
-      {/* Content */}
-      <div className="relative z-10 max-w-content mx-auto px-5 md:px-10 w-full pt-20">
-        <div className="max-w-3xl">
+      {/* Content — px-8 md:px-16 чтобы «У» не обрезалась */}
+      <div className="relative z-10 max-w-content mx-auto px-8 md:px-16 w-full pt-20">
+        <div className="max-w-5xl">
+
           <motion.p
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
@@ -61,12 +62,14 @@ export function HeroSection() {
             FPV · Образовательная платформа
           </motion.p>
 
-          <div className="overflow-hidden">
+          {/* overflow-visible — не обрезает выносные элементы кириллицы */}
+          <div style={{ overflow: "visible" }}>
             <motion.h1
               initial={{ opacity: 0, y: 40 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1], delay: 0.2 }}
               className="text-[clamp(64px,10vw,120px)] font-bold leading-[0.95] tracking-[-0.04em] text-text-primary"
+              style={{ paddingLeft: "0.03em", paddingBottom: "0.18em" }}
             >
               {HERO.headline1}
               <br />
@@ -74,13 +77,22 @@ export function HeroSection() {
             </motion.h1>
           </div>
 
+          {/* Лид с явными переносами — «в» на новой строке */}
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1], delay: 0.45 }}
-            className="mt-8 text-lg md:text-xl text-text-secondary leading-relaxed max-w-xl"
+            className="mt-8 text-lg md:text-xl text-text-secondary leading-relaxed max-w-lg"
           >
-            {HERO.lead}
+            Программная платформа нового поколения
+            <br />
+            для обучения FPV-пилотированию.
+            <br />
+            Реалистичная симуляция, структурированная
+            <br />
+            методология и всё необходимое —
+            <br />
+            в одном продукте.
           </motion.p>
 
           <motion.div
